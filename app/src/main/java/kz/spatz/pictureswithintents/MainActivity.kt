@@ -28,15 +28,5 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-/**
- * Кастомный Modifier для наложения анимированного блика (шейдера-маски).
- * BlendMode.SrcAtop переносит градиент только на непрозрачные пиксели дочернего контента.
- */
-fun Modifier.shimmerSheenMask(): Modifier = this.then(
-    Modifier.graphicsLayer(compositingStrategy = CompositingStrategy.Offscreen)
-        .drawWithContent {
-            drawContent()
-        }
-)
 
 
