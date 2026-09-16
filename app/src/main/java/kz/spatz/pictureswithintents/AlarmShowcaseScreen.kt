@@ -1,6 +1,7 @@
 package kz.spatz.pictureswithintents
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.provider.AlarmClock
 import android.widget.Toast
@@ -39,6 +40,15 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+
+fun safeStartIntent(context: Context, intent: Intent) {
+    try {
+        context.startActivity(intent)
+    } catch (e: Exception) {
+        Toast.makeText(context, "Компонент не найден: ${e.localizedMessage}", Toast.LENGTH_SHORT).show()
+    }
+}
+
 
 @Composable
 fun AlarmShowcaseScreen() {
